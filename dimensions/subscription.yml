@@ -1,0 +1,105 @@
+unique_name: Subscription
+object_type: dimension
+label: Subscription
+description: Conformed subscription dimension built from fact_subscription. Every subscription-level table joins to it on subscription_id.
+type: standard
+hierarchies:
+- unique_name: Portfolio Subscription
+  label: Portfolio > Subscription
+  filter_empty: 'yes'
+  levels:
+  - unique_name: portfolio_id
+  - unique_name: subscription_id
+    secondary_attributes:
+    - unique_name: subscription_type
+      label: Subscription Type
+      description: Subscription type (type / type_id on fact_subscription).
+      folder: Subscription
+      dataset: ds_subscription_attributes
+      name_column: subscription_type_name
+      key_columns:
+      - type_id
+    - unique_name: subscription_sub_type
+      label: Subscription Sub Type
+      folder: Subscription
+      dataset: ds_subscription_attributes
+      name_column: sub_type
+      key_columns:
+      - sub_type
+    - unique_name: account_type
+      label: Account Type
+      folder: Account
+      dataset: ds_subscription_attributes
+      name_column: account_type
+      key_columns:
+      - account_type
+    - unique_name: subscription_currency_code
+      label: Subscription Currency
+      folder: Account
+      dataset: ds_subscription_attributes
+      name_column: currency_code_name
+      key_columns:
+      - currency_code_name
+    - unique_name: subscription_active_flag
+      label: Subscription Active Flag
+      description: Active / Not Active, from fact_subscription.active_flag.
+      folder: Subscription
+      dataset: ds_subscription_attributes
+      name_column: active_flag_name
+      key_columns:
+      - active_flag_name
+    - unique_name: subscription_churn_flag
+      label: Subscription Churn Flag
+      description: Churned / Not Churned, from fact_subscription.churn_flag.
+      folder: Subscription
+      dataset: ds_subscription_attributes
+      name_column: churn_flag_name
+      key_columns:
+      - churn_flag_name
+    - unique_name: account_number
+      label: Account Number
+      folder: Account
+      dataset: ds_subscription_attributes
+      name_column: account_number
+      key_columns:
+      - account_number
+      exclude_from_dim_agg: true
+      exclude_from_fact_agg: true
+    - unique_name: billing_account_id
+      label: Billing Account ID
+      folder: Account
+      dataset: ds_subscription_attributes
+      name_column: billing_account_id
+      key_columns:
+      - billing_account_id
+      exclude_from_dim_agg: true
+      exclude_from_fact_agg: true
+    - unique_name: service_instance_id
+      label: Service Instance ID
+      folder: Account
+      dataset: ds_subscription_attributes
+      name_column: service_instance_id
+      key_columns:
+      - service_instance_id
+      exclude_from_dim_agg: true
+      exclude_from_fact_agg: true
+level_attributes:
+- unique_name: portfolio_id
+  label: Portfolio ID
+  description: A customer's Sky portfolio of accounts.
+  dataset: ds_subscription_attributes
+  name_column: portfolio_id
+  key_columns:
+  - portfolio_id
+  exclude_from_dim_agg: true
+  exclude_from_fact_agg: true
+- unique_name: subscription_id
+  label: Subscription ID
+  description: Unique subscription identifier (fact_subscription.id).
+  dataset: ds_subscription_attributes
+  name_column: id
+  key_columns:
+  - id
+  is_unique_key: true
+  exclude_from_dim_agg: true
+  exclude_from_fact_agg: true

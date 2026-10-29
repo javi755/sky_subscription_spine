@@ -1,0 +1,8 @@
+unique_name: avg_subscription_tenure
+object_type: metric
+label: Average Subscription Tenure
+calculation_method: average
+dataset: ds_fact_subscription
+column: subscription_tenure
+description: Average of fact_subscription.subscription_tenure (unit as stored in source).
+format: '#,##0.0'

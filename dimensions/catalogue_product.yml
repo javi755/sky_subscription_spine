@@ -1,0 +1,51 @@
+unique_name: Catalogue Product
+object_type: dimension
+label: Catalogue Product
+description: Catalogue products, conformed across product price, portfolio product and change attempt tables via catalogue_product_id.
+type: standard
+hierarchies:
+- unique_name: Product Type Product
+  label: Product Type > Product
+  filter_empty: 'yes'
+  levels:
+  - unique_name: catalogue_product_type
+  - unique_name: catalogue_product
+    secondary_attributes:
+    - unique_name: catalogue_product_bill_name
+      label: Product Bill Name
+      dataset: ds_catalogue_product
+      name_column: catalogue_product_bill_name
+      key_columns:
+      - catalogue_product_id
+    - unique_name: catalogue_product_description
+      label: Product Description
+      dataset: ds_catalogue_product
+      name_column: catalogue_product_description
+      key_columns:
+      - catalogue_product_id
+    - unique_name: catalogue_product_transaction_code
+      label: Product Transaction Code
+      dataset: ds_catalogue_product
+      name_column: catalogue_product_transaction_code
+      key_columns:
+      - catalogue_product_transaction_code
+    - unique_name: catalogue_product_id
+      label: Catalogue Product ID
+      dataset: ds_catalogue_product
+      name_column: catalogue_product_id
+      key_columns:
+      - catalogue_product_id
+level_attributes:
+- unique_name: catalogue_product_type
+  label: Product Type
+  dataset: ds_catalogue_product
+  name_column: catalogue_product_type
+  key_columns:
+  - catalogue_product_type
+- unique_name: catalogue_product
+  label: Product
+  dataset: ds_catalogue_product
+  name_column: catalogue_product_name
+  key_columns:
+  - catalogue_product_id
+  is_unique_key: true

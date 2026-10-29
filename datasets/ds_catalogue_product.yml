@@ -1,0 +1,30 @@
+unique_name: ds_catalogue_product
+object_type: dataset
+label: Catalogue Product (derived)
+connection_id: con_cust_spine_subs
+description: One row per catalogue product, taking the latest name/type seen in dim_subscription_product_price. Swap for the RefData catalogue product table if one is exposed in BigQuery.
+sql: |-
+  SELECT
+    catalogue_product_id,
+    catalogue_product_name,
+    COALESCE(catalogue_product_bill_name, catalogue_product_name) AS catalogue_product_bill_name,
+    catalogue_product_description,
+    catalogue_product_type,
+    catalogue_product_transaction_code
+  FROM `SKY_GCP_PROJECT.uk_pub_cust_spine_subs_is.dim_subscription_product_price`
+  WHERE catalogue_product_id IS NOT NULL
+  QUALIFY ROW_NUMBER() OVER (PARTITION BY catalogue_product_id
+                             ORDER BY effective_from_dt DESC, dw_last_modified_dt DESC) = 1
+columns:
+- name: catalogue_product_id
+  data_type: string
+- name: catalogue_product_name
+  data_type: string
+- name: catalogue_product_bill_name
+  data_type: string
+- name: catalogue_product_description
+  data_type: string
+- name: catalogue_product_type
+  data_type: string
+- name: catalogue_product_transaction_code
+  data_type: string

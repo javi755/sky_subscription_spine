@@ -1,0 +1,8 @@
+unique_name: churned_subscription_count
+object_type: metric
+label: Churned Subscriptions
+calculation_method: sum
+dataset: ds_fact_subscription
+column: churn_flag_int
+description: Subscriptions where churn_flag is TRUE.
+format: '#,##0'

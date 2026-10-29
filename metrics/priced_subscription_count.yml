@@ -1,0 +1,8 @@
+unique_name: priced_subscription_count
+object_type: metric
+label: Subscriptions with Products
+calculation_method: count distinct
+dataset: ds_subscription_product_price
+column: subscription_id
+description: Distinct subscriptions with a product price record in the selection.
+format: '#,##0'

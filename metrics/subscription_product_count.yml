@@ -1,0 +1,8 @@
+unique_name: subscription_product_count
+object_type: metric
+label: Subscription Products
+calculation_method: sum
+dataset: ds_fact_subscription
+column: product_count
+description: Sum of product_count across subscriptions.
+format: '#,##0'

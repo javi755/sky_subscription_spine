@@ -1,0 +1,8 @@
+unique_name: change_attempt_count
+object_type: metric
+label: Change Attempts
+calculation_method: count non-null
+dataset: ds_subscription_change_attempt
+column: id
+description: Rows in dim_subscription_change_attempt.
+format: '#,##0'

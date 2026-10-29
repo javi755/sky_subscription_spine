@@ -1,0 +1,33 @@
+unique_name: Subscription Status
+object_type: dimension
+label: Subscription Status
+description: Status and status reason from dim_subscription_status.
+is_degenerate: true
+hierarchies:
+- unique_name: Status Reason
+  label: Status > Reason
+  levels:
+  - unique_name: subscription_status
+  - unique_name: subscription_status_reason
+    secondary_attributes:
+    - unique_name: status_record_currency
+      label: Status Record Currency
+      description: Current = the open status interval (now is between effective_from_dt and effective_to_dt); otherwise Historical.
+      dataset: ds_subscription_status
+      name_column: record_currency
+      key_columns:
+      - record_currency
+level_attributes:
+- unique_name: subscription_status
+  label: Status
+  dataset: ds_subscription_status
+  name_column: status_name
+  key_columns:
+  - status_code
+- unique_name: subscription_status_reason
+  label: Status Reason
+  dataset: ds_subscription_status
+  name_column: reason_name
+  key_columns:
+  - status_code
+  - reason_code_key

@@ -1,0 +1,6 @@
+unique_name: sky_subscription_spine
+object_type: catalog
+label: Sky Subscription Spine
+version: 1.0
+aggressive_agg_promotion: false
+build_speculative_aggs: true

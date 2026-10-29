@@ -1,0 +1,8 @@
+unique_name: entitled_subscription_count
+object_type: metric
+label: Subscriptions with Entitlements
+calculation_method: count distinct
+dataset: ds_subscription_entitlement
+column: subscription_id
+description: Distinct subscriptions with an entitlement record in the selection.
+format: '#,##0'

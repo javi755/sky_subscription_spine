@@ -1,0 +1,8 @@
+unique_name: agreement_subscription_count
+object_type: metric
+label: Subscriptions with Agreements
+calculation_method: count distinct
+dataset: ds_subscription_agreement_item
+column: subscription_id
+description: Distinct subscriptions with an agreement item in the selection.
+format: '#,##0'

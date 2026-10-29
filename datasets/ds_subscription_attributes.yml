@@ -1,0 +1,67 @@
+unique_name: ds_subscription_attributes
+object_type: dataset
+label: fact_subscription (attributes)
+connection_id: con_cust_spine_subs
+description: Second dataset over fact_subscription that backs the conformed Subscription dimension, so every subscription-level table can join on subscription_id.
+table: fact_subscription
+columns:
+- name: id
+  data_type: string
+- name: dw_created_dt
+  data_type: datetime
+- name: dw_last_modified_dt
+  data_type: datetime
+- name: created_dt
+  data_type: datetime
+- name: created_by_id
+  data_type: string
+- name: account_type
+  data_type: string
+- name: portfolio_id
+  data_type: string
+- name: account_number
+  data_type: string
+- name: billing_account_id
+  data_type: string
+- name: currency_code
+  data_type: string
+- name: service_instance_id
+  data_type: string
+- name: type_id
+  data_type: string
+- name: type
+  data_type: string
+- name: sub_type
+  data_type: string
+- name: start_dt
+  data_type: datetime
+- name: first_activation_dt
+  data_type: datetime
+- name: first_enablement_dt
+  data_type: datetime
+- name: subscription_tenure
+  data_type: long
+- name: product_count
+  data_type: long
+- name: active_blocked_count
+  data_type: long
+- name: post_active_count
+  data_type: long
+- name: terminated_count
+  data_type: long
+- name: churn_flag
+  data_type: boolean
+- name: active_flag
+  data_type: boolean
+- name: subscription_type_name
+  data_type: string
+  sql: COALESCE(type, 'Unknown')
+- name: active_flag_name
+  data_type: string
+  sql: CASE WHEN active_flag THEN 'Active' WHEN NOT active_flag THEN 'Not Active' ELSE 'Unknown' END
+- name: churn_flag_name
+  data_type: string
+  sql: CASE WHEN churn_flag THEN 'Churned' WHEN NOT churn_flag THEN 'Not Churned' ELSE 'Unknown' END
+- name: currency_code_name
+  data_type: string
+  sql: COALESCE(currency_code, 'Unknown')

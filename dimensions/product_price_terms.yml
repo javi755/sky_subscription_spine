@@ -1,0 +1,62 @@
+unique_name: Product Price Terms
+object_type: dimension
+label: Product Price Terms
+description: Pricing attributes of a subscription product (dim_subscription_product_price).
+is_degenerate: true
+hierarchies:
+- unique_name: Price Record Currency
+  label: Price Record Currency
+  levels:
+  - unique_name: price_record_currency
+    secondary_attributes:
+    - unique_name: current_billing_plan
+      label: Billing Plan
+      dataset: ds_subscription_product_price
+      name_column: billing_plan_name
+      key_columns:
+      - billing_plan_name
+    - unique_name: price_currency_code
+      label: Price Currency
+      dataset: ds_subscription_product_price
+      name_column: currency_code_name
+      key_columns:
+      - currency_code_name
+    - unique_name: catalogue_price_point
+      label: Catalogue Price Point
+      description: The catalogue price as an attribute, for grouping by price point.
+      dataset: ds_subscription_product_price
+      name_column: catalogue_product_price
+      key_columns:
+      - catalogue_product_price
+    - unique_name: free_trial_flag
+      label: Free Trial
+      dataset: ds_subscription_product_price
+      name_column: free_trial_name
+      key_columns:
+      - free_trial_name
+    - unique_name: bundled_flag
+      label: Bundled
+      dataset: ds_subscription_product_price
+      name_column: bundled_name
+      key_columns:
+      - bundled_name
+    - unique_name: campaign_name
+      label: Campaign
+      dataset: ds_subscription_product_price
+      name_column: campaign_name_key
+      key_columns:
+      - campaign_name_key
+    - unique_name: rate_id
+      label: Rate ID
+      dataset: ds_subscription_product_price
+      name_column: rate_id
+      key_columns:
+      - rate_id
+level_attributes:
+- unique_name: price_record_currency
+  label: Price Record Currency
+  description: Current = the open price interval; otherwise Historical.
+  dataset: ds_subscription_product_price
+  name_column: record_currency
+  key_columns:
+  - record_currency

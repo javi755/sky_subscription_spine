@@ -1,0 +1,6 @@
+unique_name: change_attempt_save_rate
+object_type: metric_calc
+label: Save Rate
+expression: IIF([Measures].[change_attempt_count] = 0, NULL, [Measures].[change_attempt_save_count] / [Measures].[change_attempt_count])
+description: Saves / Change Attempts.
+format: percent

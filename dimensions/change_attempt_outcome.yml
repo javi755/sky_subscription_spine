@@ -1,0 +1,44 @@
+unique_name: Change Attempt Outcome
+object_type: dimension
+label: Change Attempt Outcome
+description: Four-level outcome of a change attempt (code + description per level).
+is_degenerate: true
+hierarchies:
+- unique_name: Outcome
+  label: Outcome L1 > L4
+  levels:
+  - unique_name: outcome_level_1
+  - unique_name: outcome_level_2
+  - unique_name: outcome_level_3
+  - unique_name: outcome_level_4
+level_attributes:
+- unique_name: outcome_level_1
+  label: Outcome Level 1
+  dataset: ds_subscription_change_attempt
+  name_column: outcome_level_1_name
+  key_columns:
+  - outcome_code_level_1_key
+- unique_name: outcome_level_2
+  label: Outcome Level 2
+  dataset: ds_subscription_change_attempt
+  name_column: outcome_level_2_name
+  key_columns:
+  - outcome_code_level_1_key
+  - outcome_code_level_2_key
+- unique_name: outcome_level_3
+  label: Outcome Level 3
+  dataset: ds_subscription_change_attempt
+  name_column: outcome_level_3_name
+  key_columns:
+  - outcome_code_level_1_key
+  - outcome_code_level_2_key
+  - outcome_code_level_3_key
+- unique_name: outcome_level_4
+  label: Outcome Level 4
+  dataset: ds_subscription_change_attempt
+  name_column: outcome_level_4_name
+  key_columns:
+  - outcome_code_level_1_key
+  - outcome_code_level_2_key
+  - outcome_code_level_3_key
+  - outcome_code_level_4_key

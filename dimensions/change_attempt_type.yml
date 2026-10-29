@@ -1,0 +1,25 @@
+unique_name: Change Attempt Type
+object_type: dimension
+label: Change Attempt Type
+description: Type of change attempt and whether it was saved.
+is_degenerate: true
+hierarchies:
+- unique_name: Change Attempt Type
+  label: Change Attempt Type
+  levels:
+  - unique_name: change_attempt_type
+    secondary_attributes:
+    - unique_name: change_attempt_save_flag
+      label: Save Outcome
+      description: Saved / Not Saved, from is_save_flag.
+      dataset: ds_subscription_change_attempt
+      name_column: save_flag_name
+      key_columns:
+      - save_flag_name
+level_attributes:
+- unique_name: change_attempt_type
+  label: Change Attempt Type
+  dataset: ds_subscription_change_attempt
+  name_column: type
+  key_columns:
+  - type

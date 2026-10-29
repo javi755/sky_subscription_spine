@@ -1,0 +1,8 @@
+unique_name: current_free_trial_product_count
+object_type: metric
+label: Current Free Trial Products
+calculation_method: sum
+dataset: ds_subscription_product_price
+column: current_free_trial_int
+description: Open product intervals flagged free_trial_flag.
+format: '#,##0'

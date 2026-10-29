@@ -1,0 +1,8 @@
+unique_name: current_entitlement_count
+object_type: metric
+label: Current Entitlements
+calculation_method: sum
+dataset: ds_subscription_entitlement
+column: is_current_int
+description: Entitlement intervals that are open today.
+format: '#,##0'

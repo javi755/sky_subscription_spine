@@ -1,0 +1,8 @@
+unique_name: avg_minimum_term_months
+object_type: metric
+label: Average Minimum Term (Months)
+calculation_method: average
+dataset: ds_subscription_agreement_item
+column: minimum_term_months
+description: Average minimum_term_months.
+format: '#,##0.0'

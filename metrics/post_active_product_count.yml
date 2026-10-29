@@ -1,0 +1,8 @@
+unique_name: post_active_product_count
+object_type: metric
+label: Post Active Products
+calculation_method: sum
+dataset: ds_fact_subscription
+column: post_active_count
+description: Sum of post_active_count across subscriptions.
+format: '#,##0'

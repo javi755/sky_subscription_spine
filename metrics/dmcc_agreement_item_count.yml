@@ -1,0 +1,8 @@
+unique_name: dmcc_agreement_item_count
+object_type: metric
+label: DMCC Agreement Items
+calculation_method: sum
+dataset: ds_subscription_agreement_item
+column: dmcc_int
+description: Agreement items where dmcc_flag is TRUE.
+format: '#,##0'

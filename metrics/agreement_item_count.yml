@@ -1,0 +1,8 @@
+unique_name: agreement_item_count
+object_type: metric
+label: Agreement Items
+calculation_method: count non-null
+dataset: ds_subscription_agreement_item
+column: id
+description: Rows in dim_subscription_agreement_item.
+format: '#,##0'

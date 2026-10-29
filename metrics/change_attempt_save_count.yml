@@ -1,0 +1,8 @@
+unique_name: change_attempt_save_count
+object_type: metric
+label: Saves
+calculation_method: sum
+dataset: ds_subscription_change_attempt
+column: is_save_int
+description: Change attempts where is_save_flag is TRUE.
+format: '#,##0'

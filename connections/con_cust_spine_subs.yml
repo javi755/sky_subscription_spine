@@ -1,0 +1,6 @@
+unique_name: con_cust_spine_subs
+object_type: connection
+label: Customer Spine - Subscriptions (BigQuery)
+as_connection: SKY_BIGQUERY
+database: SKY_GCP_PROJECT
+schema: uk_pub_cust_spine_subs_is

@@ -1,0 +1,282 @@
+unique_name: Subscription Spine
+object_type: model
+label: Subscription Spine
+description: 'Sky Customer Spine subscription model. fact_subscription plus six subscription-level tables, each modelled as its own fact joined to a conformed Subscription dimension (subscription_id), a Catalogue Product dimension (catalogue_product_id) where present, and a shared Date. The unrole-played Date means: subscription created date (fact_subscription), effective-from date (status, entitlement, product price), change attempt date, agreement item created date, and portfolio product created date.'
+relationships:
+- unique_name: fact_subscription_to_subscription
+  from:
+    dataset: ds_fact_subscription
+    join_columns:
+    - id
+  to:
+    dimension: Subscription
+    level: subscription_id
+- unique_name: fact_subscription_to_created_date
+  from:
+    dataset: ds_fact_subscription
+    join_columns:
+    - created_date
+  to:
+    dimension: Date Dimension
+    level: Date
+- unique_name: fact_subscription_to_start_date
+  from:
+    dataset: ds_fact_subscription
+    join_columns:
+    - start_date
+  to:
+    dimension: Date Dimension
+    level: Date
+  role_play: Subscription Start {0}
+- unique_name: fact_subscription_to_first_activation_date
+  from:
+    dataset: ds_fact_subscription
+    join_columns:
+    - first_activation_date
+  to:
+    dimension: Date Dimension
+    level: Date
+  role_play: First Activation {0}
+- unique_name: fact_subscription_to_first_enablement_date
+  from:
+    dataset: ds_fact_subscription
+    join_columns:
+    - first_enablement_date
+  to:
+    dimension: Date Dimension
+    level: Date
+  role_play: First Enablement {0}
+- unique_name: status_to_subscription
+  from:
+    dataset: ds_subscription_status
+    join_columns:
+    - subscription_id
+  to:
+    dimension: Subscription
+    level: subscription_id
+- unique_name: status_to_effective_date
+  from:
+    dataset: ds_subscription_status
+    join_columns:
+    - effective_from_date
+  to:
+    dimension: Date Dimension
+    level: Date
+- unique_name: entitlement_to_subscription
+  from:
+    dataset: ds_subscription_entitlement
+    join_columns:
+    - subscription_id
+  to:
+    dimension: Subscription
+    level: subscription_id
+- unique_name: entitlement_to_effective_date
+  from:
+    dataset: ds_subscription_entitlement
+    join_columns:
+    - effective_from_date
+  to:
+    dimension: Date Dimension
+    level: Date
+- unique_name: product_price_to_subscription
+  from:
+    dataset: ds_subscription_product_price
+    join_columns:
+    - subscription_id
+  to:
+    dimension: Subscription
+    level: subscription_id
+- unique_name: product_price_to_product
+  from:
+    dataset: ds_subscription_product_price
+    join_columns:
+    - catalogue_product_id
+  to:
+    dimension: Catalogue Product
+    level: catalogue_product
+- unique_name: product_price_to_effective_date
+  from:
+    dataset: ds_subscription_product_price
+    join_columns:
+    - effective_from_date
+  to:
+    dimension: Date Dimension
+    level: Date
+- unique_name: product_price_to_free_trial_end_date
+  from:
+    dataset: ds_subscription_product_price
+    join_columns:
+    - free_trial_end_date
+  to:
+    dimension: Date Dimension
+    level: Date
+  role_play: Free Trial End {0}
+- unique_name: change_attempt_to_subscription
+  from:
+    dataset: ds_subscription_change_attempt
+    join_columns:
+    - subscription_id
+  to:
+    dimension: Subscription
+    level: subscription_id
+- unique_name: change_attempt_to_product
+  from:
+    dataset: ds_subscription_change_attempt
+    join_columns:
+    - catalogue_product_id
+  to:
+    dimension: Catalogue Product
+    level: catalogue_product
+- unique_name: change_attempt_to_date
+  from:
+    dataset: ds_subscription_change_attempt
+    join_columns:
+    - change_attempt_date
+  to:
+    dimension: Date Dimension
+    level: Date
+- unique_name: agreement_item_to_subscription
+  from:
+    dataset: ds_subscription_agreement_item
+    join_columns:
+    - subscription_id
+  to:
+    dimension: Subscription
+    level: subscription_id
+- unique_name: agreement_item_to_created_date
+  from:
+    dataset: ds_subscription_agreement_item
+    join_columns:
+    - created_date
+  to:
+    dimension: Date Dimension
+    level: Date
+- unique_name: agreement_item_to_start_date
+  from:
+    dataset: ds_subscription_agreement_item
+    join_columns:
+    - agreement_start_date
+  to:
+    dimension: Date Dimension
+    level: Date
+  role_play: Agreement Start {0}
+- unique_name: agreement_item_to_minimum_term_end_date
+  from:
+    dataset: ds_subscription_agreement_item
+    join_columns:
+    - minimum_term_end_date
+  to:
+    dimension: Date Dimension
+    level: Date
+  role_play: Minimum Term End {0}
+- unique_name: portfolio_product_to_subscription
+  from:
+    dataset: ds_subscription_portfolio_product
+    join_columns:
+    - subscription_id
+  to:
+    dimension: Subscription
+    level: subscription_id
+- unique_name: portfolio_product_to_product
+  from:
+    dataset: ds_subscription_portfolio_product
+    join_columns:
+    - catalogue_product_id
+  to:
+    dimension: Catalogue Product
+    level: catalogue_product
+- unique_name: portfolio_product_to_created_date
+  from:
+    dataset: ds_subscription_portfolio_product
+    join_columns:
+    - created_date
+  to:
+    dimension: Date Dimension
+    level: Date
+dimensions:
+- Subscription Status
+- Entitlement
+- Product Price Terms
+- Change Attempt Outcome
+- Change Attempt Reason
+- Change Attempt Type
+- Agreement
+metrics:
+- unique_name: subscription_count
+  folder: Subscriptions
+- unique_name: active_subscription_count
+  folder: Subscriptions
+- unique_name: churned_subscription_count
+  folder: Subscriptions
+- unique_name: portfolio_count
+  folder: Subscriptions
+- unique_name: account_count
+  folder: Subscriptions
+- unique_name: avg_subscription_tenure
+  folder: Subscriptions
+- unique_name: subscription_product_count
+  folder: Subscriptions
+- unique_name: active_blocked_product_count
+  folder: Subscriptions
+- unique_name: post_active_product_count
+  folder: Subscriptions
+- unique_name: terminated_product_count
+  folder: Subscriptions
+- unique_name: status_record_count
+  folder: Status
+- unique_name: current_status_subscription_count
+  folder: Status
+- unique_name: status_subscription_count
+  folder: Status
+- unique_name: avg_days_in_status
+  folder: Status
+- unique_name: entitlement_record_count
+  folder: Entitlements
+- unique_name: current_entitlement_count
+  folder: Entitlements
+- unique_name: entitled_subscription_count
+  folder: Entitlements
+- unique_name: product_price_record_count
+  folder: Product & Price
+- unique_name: current_product_count
+  folder: Product & Price
+- unique_name: current_catalogue_price
+  folder: Product & Price
+- unique_name: avg_catalogue_price
+  folder: Product & Price
+- unique_name: current_free_trial_product_count
+  folder: Product & Price
+- unique_name: current_bundled_product_count
+  folder: Product & Price
+- unique_name: priced_subscription_count
+  folder: Product & Price
+- unique_name: change_attempt_count
+  folder: Change Attempts
+- unique_name: change_attempt_save_count
+  folder: Change Attempts
+- unique_name: change_attempt_subscription_count
+  folder: Change Attempts
+- unique_name: agreement_item_count
+  folder: Agreements
+- unique_name: in_minimum_term_item_count
+  folder: Agreements
+- unique_name: avg_minimum_term_months
+  folder: Agreements
+- unique_name: dmcc_agreement_item_count
+  folder: Agreements
+- unique_name: agreement_subscription_count
+  folder: Agreements
+- unique_name: portfolio_product_count
+  folder: Portfolio Products
+- unique_name: portfolio_product_subscription_count
+  folder: Portfolio Products
+- unique_name: subscription_churn_rate
+  folder: Subscriptions
+- unique_name: subscription_active_rate
+  folder: Subscriptions
+- unique_name: avg_products_per_subscription
+  folder: Subscriptions
+- unique_name: change_attempt_save_rate
+  folder: Change Attempts
+- unique_name: minimum_term_share
+  folder: Agreements

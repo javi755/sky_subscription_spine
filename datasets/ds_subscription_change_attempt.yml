@@ -1,0 +1,122 @@
+unique_name: ds_subscription_change_attempt
+object_type: dataset
+label: dim_subscription_change_attempt
+connection_id: con_cust_spine_subs
+description: One row per subscription change attempt (e.g. cancellation / downgrade attempts) with save flag and four-level outcome and reason codes.
+table: dim_subscription_change_attempt
+columns:
+- name: id
+  data_type: string
+- name: dw_last_modified_dt
+  data_type: datetime
+- name: subscription_id
+  data_type: string
+- name: order_id
+  data_type: string
+- name: account_number
+  data_type: string
+- name: catalogue_product_id
+  data_type: string
+- name: created_dt
+  data_type: datetime
+- name: created_by_id
+  data_type: string
+- name: last_modified_dt
+  data_type: datetime
+- name: last_modified_by_id
+  data_type: string
+- name: type
+  data_type: string
+- name: change_attempt_dt
+  data_type: datetime
+- name: is_save_flag
+  data_type: boolean
+- name: outcome_code_level_1
+  data_type: string
+- name: outcome_desc_level_1
+  data_type: string
+- name: outcome_code_level_2
+  data_type: string
+- name: outcome_desc_level_2
+  data_type: string
+- name: outcome_code_level_3
+  data_type: string
+- name: outcome_desc_level_3
+  data_type: string
+- name: outcome_code_level_4
+  data_type: string
+- name: outcome_desc_level_4
+  data_type: string
+- name: reason_code_level_1
+  data_type: string
+- name: reason_desc_level_1
+  data_type: string
+- name: reason_code_level_2
+  data_type: string
+- name: reason_desc_level_2
+  data_type: string
+- name: reason_code_level_3
+  data_type: string
+- name: reason_desc_level_3
+  data_type: string
+- name: reason_code_level_4
+  data_type: string
+- name: reason_desc_level_4
+  data_type: string
+- name: change_attempt_date
+  data_type: date
+  sql: DATE(change_attempt_dt)
+- name: is_save_int
+  data_type: long
+  sql: CASE WHEN is_save_flag THEN 1 ELSE 0 END
+- name: save_flag_name
+  data_type: string
+  sql: CASE WHEN is_save_flag THEN 'Saved' WHEN NOT is_save_flag THEN 'Not Saved' ELSE 'Unknown' END
+- name: outcome_code_level_1_key
+  data_type: string
+  sql: COALESCE(outcome_code_level_1, 'N/A')
+- name: outcome_level_1_name
+  data_type: string
+  sql: COALESCE(outcome_desc_level_1, outcome_code_level_1, 'Not Recorded')
+- name: outcome_code_level_2_key
+  data_type: string
+  sql: COALESCE(outcome_code_level_2, 'N/A')
+- name: outcome_level_2_name
+  data_type: string
+  sql: COALESCE(outcome_desc_level_2, outcome_code_level_2, 'Not Recorded')
+- name: outcome_code_level_3_key
+  data_type: string
+  sql: COALESCE(outcome_code_level_3, 'N/A')
+- name: outcome_level_3_name
+  data_type: string
+  sql: COALESCE(outcome_desc_level_3, outcome_code_level_3, 'Not Recorded')
+- name: outcome_code_level_4_key
+  data_type: string
+  sql: COALESCE(outcome_code_level_4, 'N/A')
+- name: outcome_level_4_name
+  data_type: string
+  sql: COALESCE(outcome_desc_level_4, outcome_code_level_4, 'Not Recorded')
+- name: reason_code_level_1_key
+  data_type: string
+  sql: COALESCE(reason_code_level_1, 'N/A')
+- name: reason_level_1_name
+  data_type: string
+  sql: COALESCE(reason_desc_level_1, reason_code_level_1, 'Not Recorded')
+- name: reason_code_level_2_key
+  data_type: string
+  sql: COALESCE(reason_code_level_2, 'N/A')
+- name: reason_level_2_name
+  data_type: string
+  sql: COALESCE(reason_desc_level_2, reason_code_level_2, 'Not Recorded')
+- name: reason_code_level_3_key
+  data_type: string
+  sql: COALESCE(reason_code_level_3, 'N/A')
+- name: reason_level_3_name
+  data_type: string
+  sql: COALESCE(reason_desc_level_3, reason_code_level_3, 'Not Recorded')
+- name: reason_code_level_4_key
+  data_type: string
+  sql: COALESCE(reason_code_level_4, 'N/A')
+- name: reason_level_4_name
+  data_type: string
+  sql: COALESCE(reason_desc_level_4, reason_code_level_4, 'Not Recorded')

@@ -1,0 +1,8 @@
+unique_name: product_price_record_count
+object_type: metric
+label: Product Price Records
+calculation_method: count non-null
+dataset: ds_subscription_product_price
+column: id
+description: Rows in dim_subscription_product_price.
+format: '#,##0'

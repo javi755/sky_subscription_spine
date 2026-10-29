@@ -1,0 +1,8 @@
+unique_name: active_subscription_count
+object_type: metric
+label: Active Subscriptions
+calculation_method: sum
+dataset: ds_fact_subscription
+column: active_flag_int
+description: Subscriptions where active_flag is TRUE.
+format: '#,##0'

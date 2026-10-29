@@ -1,0 +1,24 @@
+unique_name: ds_subscription_portfolio_product
+object_type: dataset
+label: dim_subscription_portfolio_product
+connection_id: con_cust_spine_subs
+description: 'Products relating to a customer''s subscription (insert only; one row per product added to a subscription). Source: Chordiant bsbportfolioproduct (core/mobile) and productsubscriptionlink (SOIP).'
+table: dim_subscription_portfolio_product
+columns:
+- name: id
+  data_type: string
+- name: dw_created_dt
+  data_type: datetime
+- name: dw_last_modified_dt
+  data_type: datetime
+- name: created_dt
+  data_type: datetime
+- name: created_by_id
+  data_type: string
+- name: subscription_id
+  data_type: string
+- name: catalogue_product_id
+  data_type: string
+- name: created_date
+  data_type: date
+  sql: DATE(created_dt)

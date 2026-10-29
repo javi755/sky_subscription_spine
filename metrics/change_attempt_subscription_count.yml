@@ -1,0 +1,8 @@
+unique_name: change_attempt_subscription_count
+object_type: metric
+label: Subscriptions with Change Attempts
+calculation_method: count distinct
+dataset: ds_subscription_change_attempt
+column: subscription_id
+description: Distinct subscriptions with a change attempt in the selection.
+format: '#,##0'

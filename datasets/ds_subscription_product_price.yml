@@ -1,0 +1,95 @@
+unique_name: ds_subscription_product_price
+object_type: dataset
+label: dim_subscription_product_price
+connection_id: con_cust_spine_subs
+description: Product and catalogue price history (SCD2) per subscription.
+table: dim_subscription_product_price
+columns:
+- name: id
+  data_type: string
+- name: catalogue_product_price_id
+  data_type: string
+- name: subscription_id
+  data_type: string
+- name: dw_created_dt
+  data_type: datetime
+- name: dw_last_modified_dt
+  data_type: datetime
+- name: effective_from_dt
+  data_type: datetime
+- name: effective_to_dt
+  data_type: datetime
+- name: created_dt
+  data_type: datetime
+- name: created_by_id
+  data_type: string
+- name: last_modified_dt
+  data_type: datetime
+- name: last_modified_by_id
+  data_type: string
+- name: entitlement_id
+  data_type: string
+- name: catalogue_product_id
+  data_type: string
+- name: catalogue_product_name
+  data_type: string
+- name: catalogue_product_bill_name
+  data_type: string
+- name: catalogue_product_description
+  data_type: string
+- name: catalogue_product_type
+  data_type: string
+- name: catalogue_product_transaction_code
+  data_type: string
+- name: currency_code
+  data_type: string
+- name: catalogue_product_price
+  data_type: decimal(38,9)
+- name: current_billing_plan
+  data_type: string
+- name: free_trial_flag
+  data_type: boolean
+- name: bundled_flag
+  data_type: boolean
+- name: free_trial_end_dt
+  data_type: datetime
+- name: rate_id
+  data_type: long
+- name: campaign_name
+  data_type: string
+- name: effective_from_date
+  data_type: date
+  sql: DATE(effective_from_dt)
+- name: free_trial_end_date
+  data_type: date
+  sql: DATE(free_trial_end_dt)
+- name: is_current_int
+  data_type: long
+  sql: CASE WHEN CURRENT_TIMESTAMP() >= effective_from_dt AND CURRENT_TIMESTAMP() < effective_to_dt THEN 1 ELSE 0 END
+- name: record_currency
+  data_type: string
+  sql: CASE WHEN CURRENT_TIMESTAMP() >= effective_from_dt AND CURRENT_TIMESTAMP() < effective_to_dt THEN 'Current' ELSE 'Historical' END
+- name: current_price
+  data_type: decimal(38,9)
+  sql: CASE WHEN CURRENT_TIMESTAMP() >= effective_from_dt AND CURRENT_TIMESTAMP() < effective_to_dt THEN catalogue_product_price ELSE 0 END
+- name: current_free_trial_int
+  data_type: long
+  sql: CASE WHEN free_trial_flag AND CURRENT_TIMESTAMP() >= effective_from_dt AND CURRENT_TIMESTAMP() < effective_to_dt THEN 1 ELSE 0 END
+- name: current_bundled_int
+  data_type: long
+  sql: CASE WHEN bundled_flag AND CURRENT_TIMESTAMP() >= effective_from_dt AND CURRENT_TIMESTAMP() < effective_to_dt THEN 1 ELSE 0 END
+- name: currency_code_name
+  data_type: string
+  sql: COALESCE(currency_code, 'Unknown')
+- name: billing_plan_name
+  data_type: string
+  sql: COALESCE(current_billing_plan, 'None')
+- name: campaign_name_key
+  data_type: string
+  sql: COALESCE(campaign_name, 'None')
+- name: free_trial_name
+  data_type: string
+  sql: CASE WHEN free_trial_flag THEN 'Free Trial' ELSE 'Not Free Trial' END
+- name: bundled_name
+  data_type: string
+  sql: CASE WHEN bundled_flag THEN 'Bundled' ELSE 'Not Bundled' END

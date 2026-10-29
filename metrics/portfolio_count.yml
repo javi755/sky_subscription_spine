@@ -1,0 +1,8 @@
+unique_name: portfolio_count
+object_type: metric
+label: Portfolios
+calculation_method: count distinct
+dataset: ds_fact_subscription
+column: portfolio_id
+description: Distinct portfolio_id values across subscriptions.
+format: '#,##0'

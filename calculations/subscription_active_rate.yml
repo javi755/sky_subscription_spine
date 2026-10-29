@@ -1,0 +1,6 @@
+unique_name: subscription_active_rate
+object_type: metric_calc
+label: Subscription Active Rate
+expression: IIF([Measures].[subscription_count] = 0, NULL, [Measures].[active_subscription_count] / [Measures].[subscription_count])
+description: Active Subscriptions / Subscriptions.
+format: percent

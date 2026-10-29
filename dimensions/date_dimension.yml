@@ -1,0 +1,69 @@
+unique_name: Date Dimension
+object_type: dimension
+label: Date
+description: Gregorian calendar. Day of week runs Monday (1) to Sunday (7).
+type: time
+hierarchies:
+- unique_name: Calendar
+  label: Calendar
+  filter_empty: 'yes'
+  levels:
+  - unique_name: Year
+  - unique_name: Quarter
+  - unique_name: Month
+  - unique_name: Date
+    secondary_attributes:
+    - unique_name: Day of Week
+      label: Day of Week
+      dataset: ds_spine_date
+      name_column: day_of_week_name
+      key_columns:
+      - day_of_week_num
+      sort_column: day_of_week_num
+    - unique_name: Month of Year
+      label: Month of Year
+      dataset: ds_spine_date
+      name_column: month_of_year_name
+      key_columns:
+      - month_of_year_num
+      sort_column: month_of_year_num
+    - unique_name: Week Commencing
+      label: Week Commencing (Mon)
+      dataset: ds_spine_date
+      name_column: week_commencing
+      key_columns:
+      - week_commencing
+level_attributes:
+- unique_name: Year
+  label: Year
+  dataset: ds_spine_date
+  name_column: year_name
+  key_columns:
+  - year_num
+  sort_column: year_num
+  time_unit: year
+- unique_name: Quarter
+  label: Quarter
+  dataset: ds_spine_date
+  name_column: quarter_name
+  key_columns:
+  - quarter_key
+  sort_column: quarter_key
+  time_unit: quarter
+- unique_name: Month
+  label: Month
+  dataset: ds_spine_date
+  name_column: month_name
+  key_columns:
+  - month_key
+  sort_column: month_key
+  time_unit: month
+- unique_name: Date
+  label: Date
+  dataset: ds_spine_date
+  name_column: date_name
+  key_columns:
+  - date_key
+  sort_column: date_key
+  time_unit: day
+  is_unique_key: true

@@ -1,0 +1,8 @@
+unique_name: current_bundled_product_count
+object_type: metric
+label: Current Bundled Products
+calculation_method: sum
+dataset: ds_subscription_product_price
+column: current_bundled_int
+description: Open product intervals flagged bundled_flag.
+format: '#,##0'

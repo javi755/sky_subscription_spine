@@ -1,0 +1,48 @@
+unique_name: ds_spine_date
+object_type: dataset
+label: Calendar
+connection_id: con_cust_spine_subs
+description: Generated calendar (1985-01-01 to 2040-12-31) built with GENERATE_DATE_ARRAY; no physical date table is required.
+sql: |-
+  SELECT
+    d AS date_key,
+    FORMAT_DATE('%Y-%m-%d', d) AS date_name,
+    EXTRACT(YEAR FROM d) AS year_num,
+    CAST(EXTRACT(YEAR FROM d) AS STRING) AS year_name,
+    EXTRACT(YEAR FROM d) * 10 + EXTRACT(QUARTER FROM d) AS quarter_key,
+    CONCAT(CAST(EXTRACT(YEAR FROM d) AS STRING), ' Q', CAST(EXTRACT(QUARTER FROM d) AS STRING)) AS quarter_name,
+    EXTRACT(YEAR FROM d) * 100 + EXTRACT(MONTH FROM d) AS month_key,
+    FORMAT_DATE('%b %Y', d) AS month_name,
+    EXTRACT(MONTH FROM d) AS month_of_year_num,
+    FORMAT_DATE('%B', d) AS month_of_year_name,
+    DATE_TRUNC(d, WEEK(MONDAY)) AS week_commencing,
+    MOD(EXTRACT(DAYOFWEEK FROM d) + 5, 7) + 1 AS day_of_week_num,
+    FORMAT_DATE('%A', d) AS day_of_week_name
+  FROM UNNEST(GENERATE_DATE_ARRAY(DATE '1985-01-01', DATE '2040-12-31')) AS d
+columns:
+- name: date_key
+  data_type: date
+- name: date_name
+  data_type: string
+- name: year_num
+  data_type: long
+- name: year_name
+  data_type: string
+- name: quarter_key
+  data_type: long
+- name: quarter_name
+  data_type: string
+- name: month_key
+  data_type: long
+- name: month_name
+  data_type: string
+- name: month_of_year_num
+  data_type: long
+- name: month_of_year_name
+  data_type: string
+- name: week_commencing
+  data_type: date
+- name: day_of_week_num
+  data_type: long
+- name: day_of_week_name
+  data_type: string

@@ -1,0 +1,6 @@
+unique_name: subscription_churn_rate
+object_type: metric_calc
+label: Subscription Churn Rate
+expression: IIF([Measures].[subscription_count] = 0, NULL, [Measures].[churned_subscription_count] / [Measures].[subscription_count])
+description: Churned Subscriptions / Subscriptions.
+format: percent

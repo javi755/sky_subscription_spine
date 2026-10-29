@@ -1,0 +1,6 @@
+unique_name: avg_products_per_subscription
+object_type: metric_calc
+label: Average Products per Subscription
+expression: IIF([Measures].[subscription_count] = 0, NULL, [Measures].[subscription_product_count] / [Measures].[subscription_count])
+description: Subscription Products / Subscriptions.
+format: '#,##0.00'

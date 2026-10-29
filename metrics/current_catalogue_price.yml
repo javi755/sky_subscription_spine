@@ -1,0 +1,8 @@
+unique_name: current_catalogue_price
+object_type: metric
+label: Current Catalogue Price
+calculation_method: sum
+dataset: ds_subscription_product_price
+column: current_price
+description: Sum of catalogue_product_price on open intervals. Mixed currencies are summed together, so slice by Price Currency.
+format: '#,##0.00'

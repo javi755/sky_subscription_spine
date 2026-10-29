@@ -1,0 +1,8 @@
+unique_name: terminated_product_count
+object_type: metric
+label: Terminated Products
+calculation_method: sum
+dataset: ds_fact_subscription
+column: terminated_count
+description: Sum of terminated_count across subscriptions.
+format: '#,##0'

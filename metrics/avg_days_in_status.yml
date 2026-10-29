@@ -1,0 +1,8 @@
+unique_name: avg_days_in_status
+object_type: metric
+label: Average Days in Status
+calculation_method: average
+dataset: ds_subscription_status
+column: days_in_status
+description: Average length of a status interval in days (open intervals measured to today).
+format: '#,##0.0'

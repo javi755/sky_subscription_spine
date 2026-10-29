@@ -1,0 +1,58 @@
+unique_name: Agreement
+object_type: dimension
+label: Agreement
+description: Agreement / contract terms (dim_subscription_agreement_item).
+is_degenerate: true
+hierarchies:
+- unique_name: Agreement Type Contract
+  label: Agreement Item Type > Contract Code
+  levels:
+  - unique_name: agreement_item_type
+  - unique_name: contract_code
+    secondary_attributes:
+    - unique_name: subscription_agreement
+      label: Subscription Agreement
+      dataset: ds_subscription_agreement_item
+      name_column: subscription_agreement_name
+      key_columns:
+      - subscription_agreement_name
+    - unique_name: minimum_term_months
+      label: Minimum Term (Months)
+      dataset: ds_subscription_agreement_item
+      name_column: minimum_term_months
+      key_columns:
+      - minimum_term_months
+      sort_column: minimum_term_months
+    - unique_name: minimum_term_status
+      label: Minimum Term Status
+      description: In Minimum Term when calculated_minimum_term_end_dt is in the future; Out of Minimum Term when it has passed.
+      dataset: ds_subscription_agreement_item
+      name_column: minimum_term_status
+      key_columns:
+      - minimum_term_status
+    - unique_name: agreement_created_reason_code
+      label: Agreement Created Reason Code
+      dataset: ds_subscription_agreement_item
+      name_column: created_reason_code_name
+      key_columns:
+      - created_reason_code_name
+    - unique_name: dmcc_flag
+      label: DMCC Flag
+      dataset: ds_subscription_agreement_item
+      name_column: dmcc_flag_name
+      key_columns:
+      - dmcc_flag_name
+level_attributes:
+- unique_name: agreement_item_type
+  label: Agreement Item Type
+  dataset: ds_subscription_agreement_item
+  name_column: agreement_item_type_name
+  key_columns:
+  - agreement_item_type_name
+- unique_name: contract_code
+  label: Contract Code
+  dataset: ds_subscription_agreement_item
+  name_column: contract_code
+  key_columns:
+  - agreement_item_type_name
+  - contract_code

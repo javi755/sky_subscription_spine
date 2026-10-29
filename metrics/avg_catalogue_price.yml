@@ -1,0 +1,8 @@
+unique_name: avg_catalogue_price
+object_type: metric
+label: Average Catalogue Price
+calculation_method: average
+dataset: ds_subscription_product_price
+column: catalogue_product_price
+description: Average catalogue_product_price across the selected price records.
+format: '#,##0.00'

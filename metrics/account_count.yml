@@ -1,0 +1,8 @@
+unique_name: account_count
+object_type: metric
+label: Accounts
+calculation_method: count distinct
+dataset: ds_fact_subscription
+column: account_number
+description: Distinct account_number values across subscriptions.
+format: '#,##0'

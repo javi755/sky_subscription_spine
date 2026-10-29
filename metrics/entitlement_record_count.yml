@@ -1,0 +1,8 @@
+unique_name: entitlement_record_count
+object_type: metric
+label: Entitlement Records
+calculation_method: count non-null
+dataset: ds_subscription_entitlement
+column: id
+description: Rows in dim_subscription_entitlement.
+format: '#,##0'

@@ -1,0 +1,8 @@
+unique_name: status_record_count
+object_type: metric
+label: Status Records
+calculation_method: count non-null
+dataset: ds_subscription_status
+column: id
+description: Rows in dim_subscription_status (status intervals).
+format: '#,##0'

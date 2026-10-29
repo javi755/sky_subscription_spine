@@ -1,0 +1,8 @@
+unique_name: subscription_count
+object_type: metric
+label: Subscriptions
+calculation_method: count non-null
+dataset: ds_fact_subscription
+column: id
+description: Number of subscriptions (rows in fact_subscription).
+format: '#,##0'

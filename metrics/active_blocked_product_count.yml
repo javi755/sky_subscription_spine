@@ -1,0 +1,8 @@
+unique_name: active_blocked_product_count
+object_type: metric
+label: Active Blocked Products
+calculation_method: sum
+dataset: ds_fact_subscription
+column: active_blocked_count
+description: Sum of active_blocked_count across subscriptions.
+format: '#,##0'

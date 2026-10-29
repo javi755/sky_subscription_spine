@@ -1,0 +1,8 @@
+unique_name: status_subscription_count
+object_type: metric
+label: Subscriptions with Status History
+calculation_method: count distinct
+dataset: ds_subscription_status
+column: subscription_id
+description: Distinct subscriptions that have any status record in the selection.
+format: '#,##0'

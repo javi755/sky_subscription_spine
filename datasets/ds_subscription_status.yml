@@ -1,0 +1,60 @@
+unique_name: ds_subscription_status
+object_type: dataset
+label: dim_subscription_status
+connection_id: con_cust_spine_subs
+description: 'Status history (SCD2) per subscription: one row per status interval.'
+table: dim_subscription_status
+columns:
+- name: id
+  data_type: string
+- name: subscription_id
+  data_type: string
+- name: dw_created_dt
+  data_type: datetime
+- name: dw_last_modified_dt
+  data_type: datetime
+- name: effective_from_dt
+  data_type: datetime
+- name: effective_from_dt_csn_seq
+  data_type: decimal(38,9)
+- name: effective_from_dt_seq
+  data_type: decimal(38,9)
+- name: effective_to_dt
+  data_type: datetime
+- name: created_dt
+  data_type: datetime
+- name: created_by_id
+  data_type: string
+- name: last_modified_dt
+  data_type: datetime
+- name: last_modified_by_id
+  data_type: string
+- name: status_code
+  data_type: string
+- name: status
+  data_type: string
+- name: reason_code
+  data_type: string
+- name: reason
+  data_type: string
+- name: effective_from_date
+  data_type: date
+  sql: DATE(effective_from_dt)
+- name: status_name
+  data_type: string
+  sql: COALESCE(status, status_code)
+- name: reason_code_key
+  data_type: string
+  sql: COALESCE(reason_code, 'N/A')
+- name: reason_name
+  data_type: string
+  sql: COALESCE(reason, reason_code, 'No Reason')
+- name: is_current_int
+  data_type: long
+  sql: CASE WHEN CURRENT_TIMESTAMP() >= effective_from_dt AND CURRENT_TIMESTAMP() < effective_to_dt THEN 1 ELSE 0 END
+- name: record_currency
+  data_type: string
+  sql: CASE WHEN CURRENT_TIMESTAMP() >= effective_from_dt AND CURRENT_TIMESTAMP() < effective_to_dt THEN 'Current' ELSE 'Historical' END
+- name: days_in_status
+  data_type: long
+  sql: TIMESTAMP_DIFF(LEAST(effective_to_dt, CURRENT_TIMESTAMP()), effective_from_dt, DAY)

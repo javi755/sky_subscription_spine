@@ -1,0 +1,8 @@
+unique_name: in_minimum_term_item_count
+object_type: metric
+label: Agreement Items in Minimum Term
+calculation_method: sum
+dataset: ds_subscription_agreement_item
+column: in_minimum_term_int
+description: Agreement items whose calculated minimum term end date is in the future.
+format: '#,##0'

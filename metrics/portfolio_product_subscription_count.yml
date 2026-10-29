@@ -1,0 +1,8 @@
+unique_name: portfolio_product_subscription_count
+object_type: metric
+label: Subscriptions with Portfolio Products
+calculation_method: count distinct
+dataset: ds_subscription_portfolio_product
+column: subscription_id
+description: Distinct subscriptions with a portfolio product in the selection.
+format: '#,##0'

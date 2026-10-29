@@ -1,0 +1,8 @@
+unique_name: portfolio_product_count
+object_type: metric
+label: Portfolio Products
+calculation_method: count non-null
+dataset: ds_subscription_portfolio_product
+column: id
+description: Products added to subscriptions (rows in dim_subscription_portfolio_product).
+format: '#,##0'

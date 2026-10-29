@@ -1,0 +1,8 @@
+unique_name: current_product_count
+object_type: metric
+label: Current Subscription Products
+calculation_method: sum
+dataset: ds_subscription_product_price
+column: is_current_int
+description: Product price intervals that are open today.
+format: '#,##0'

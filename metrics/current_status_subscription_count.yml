@@ -1,0 +1,8 @@
+unique_name: current_status_subscription_count
+object_type: metric
+label: Subscriptions in Current Status
+calculation_method: sum
+dataset: ds_subscription_status
+column: is_current_int
+description: Open status intervals. With one open interval per subscription this is the number of subscriptions currently in each status.
+format: '#,##0'

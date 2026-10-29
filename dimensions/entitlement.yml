@@ -1,0 +1,31 @@
+unique_name: Entitlement
+object_type: dimension
+label: Entitlement
+description: Entitlements held by a subscription (dim_subscription_entitlement).
+is_degenerate: true
+hierarchies:
+- unique_name: Entitlement
+  label: Entitlement
+  levels:
+  - unique_name: entitlement
+    secondary_attributes:
+    - unique_name: entitlement_code
+      label: Entitlement Code
+      dataset: ds_subscription_entitlement
+      name_column: entitlement_code
+      key_columns:
+      - entitlement_code
+    - unique_name: entitlement_record_currency
+      label: Entitlement Record Currency
+      description: Current = the open entitlement interval; otherwise Historical.
+      dataset: ds_subscription_entitlement
+      name_column: record_currency
+      key_columns:
+      - record_currency
+level_attributes:
+- unique_name: entitlement
+  label: Entitlement
+  dataset: ds_subscription_entitlement
+  name_column: entitlement
+  key_columns:
+  - entitlement_code

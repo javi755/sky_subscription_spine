@@ -1,0 +1,6 @@
+unique_name: minimum_term_share
+object_type: metric_calc
+label: Share of Agreement Items in Minimum Term
+expression: IIF([Measures].[agreement_item_count] = 0, NULL, [Measures].[in_minimum_term_item_count] / [Measures].[agreement_item_count])
+description: Agreement Items in Minimum Term / Agreement Items.
+format: percent
